@@ -5,7 +5,7 @@
 
 // I AM NOT DONE
 
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
 
@@ -15,6 +15,7 @@ struct JobStatus {
 
 fn main() {
     let status = Arc::new(JobStatus { jobs_completed: 0 });
+    RwLo
     let mut handles = vec![];
     for _ in 0..10 {
         let status_shared = Arc::clone(&status);
@@ -29,6 +30,6 @@ fn main() {
         handle.join().unwrap();
         // TODO: Print the value of the JobStatus.jobs_completed. Did you notice anything
         // interesting in the output? Do you have to 'join' on all the handles?
-        println!("jobs completed {}", ???);
+        println!("jobs completed {}", status.jobs_completed);
     }
 }
